@@ -1,0 +1,70 @@
+<div class="container">
+  <h1>Enter your Data</h1>
+  <form [formGroup]="form" class="action-form">
+    <section>
+      <div class="formControl">
+        <label class="label" for="nome">Nome</label>
+        <input
+          type="text"
+          class="keyboard__input"
+          id="nome"
+          formControlName="name"
+        />
+      </div>
+      <div class="formControl">
+        <label class="label" for="sobrenome">Sobrenome</label>
+        <input
+          type="text"
+          id="sobrenome"
+          class="keyboard__input"
+          formControlName="lastName"
+        />
+      </div>
+      <div class="formControl">
+        <label class="label" for="dataNascimento">Data de Nascimento</label>
+        <input
+          id="dataNascimento"
+          type="date"
+          class="keyboard__input"
+          formControlName="date"
+        />
+      </div>
+    </section>
+    <section class="keyboard">
+      <label class="label" for="senha">Senha</label>
+      <input
+        type="password"
+        class="keyboard__input"
+        formControlName="password"
+        max="6"
+        id="senha"
+        readonly
+      />
+      <div class="keyboard__container">
+        <button
+          type="button"
+          *ngFor="let op of options; let i = index"
+          (click)="setPasswordValue(op?.value)"
+          class="keyboard__button"
+          [id]="'button' + i"
+        >
+          {{ op.text }}
+        </button>
+        <button
+          (click)="removePasswordValue()"
+          id="buttonClear"
+          class="keyboard__button"
+        >
+          clear
+        </button>
+      </div>
+    </section>
+    <input
+      type="submit"
+      class="btn-submit"
+      value="Submit"
+      (click)="sendForm()"
+      [disabled]="!form.valid"
+    />
+  </form>
+</div>
